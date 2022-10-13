@@ -1,0 +1,41 @@
+Source: node-del
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends:
+ debhelper-compat (= 13)
+ , node-globby <!nocheck>
+ , node-graceful-fs
+ , node-is-glob <!nocheck>
+ , node-is-path-cwd <!nocheck>
+ , node-is-path-inside
+ , node-p-map <!nocheck>
+ , node-rimraf <!nocheck>
+ , node-slash
+ , dh-sequence-nodejs
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-del
+Vcs-Git: https://salsa.debian.org/js-team/node-del.git
+Homepage: https://github.com/sindresorhus/del#readme
+Rules-Requires-Root: no
+
+Package: node-del
+Architecture: all
+Depends:
+ ${misc:Depends}
+ , node-globby
+ , node-graceful-fs
+ , node-is-glob
+ , node-is-path-cwd
+ , node-is-path-inside
+ , node-p-map
+ , node-rimraf
+ , node-slash
+Description: Delete files and folders
+ This module is similar to rimraf, but with a Promise API and support for
+ multiple files and globbing. It also protects you against deleting the current
+ working directory and above.
+ .
+ Node.js is an event-based server-side JavaScript engine.
