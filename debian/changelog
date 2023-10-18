@@ -1,3 +1,57 @@
+node-del (7.0.0-5) unstable; urgency=medium
+
+  * Team upload
+  * Fix commonjs
+
+ -- Yadd <yadd@debian.org>  Mon, 07 Nov 2022 16:45:34 +0100
+
+node-del (7.0.0-4) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable
+
+ -- Yadd <yadd@debian.org>  Thu, 06 Oct 2022 06:27:26 +0200
+
+node-del (7.0.0-3) experimental; urgency=medium
+
+  * Team upload
+  * Fix commonjs
+
+ -- Yadd <yadd@debian.org>  Mon, 19 Sep 2022 17:24:53 +0200
+
+node-del (7.0.0-2) experimental; urgency=medium
+
+  * Team upload
+  * Fix "files" field in patch
+
+ -- Yadd <yadd@debian.org>  Sun, 18 Sep 2022 08:15:11 +0200
+
+node-del (7.0.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 7.0.0
+  * Update test
+  * Build commonjs files
+
+ -- Yadd <yadd@debian.org>  Sat, 17 Sep 2022 22:09:50 +0200
+
+node-del (6.1.1-1) unstable; urgency=medium
+
+  * Team upload
+  * Declare compliance with policy 4.6.1
+  * New upstream version 6.1.1
+  * Refresh patch
+
+ -- Yadd <yadd@debian.org>  Tue, 28 Jun 2022 12:24:34 +0200
+
+node-del (6.0.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 6.0.0
+  * Enable upstream test (tape instead of ava)
+
+ -- Yadd <yadd@debian.org>  Tue, 08 Feb 2022 10:17:00 +0100
+
 node-del (5.1.0-3) unstable; urgency=medium
 
   * Team upload

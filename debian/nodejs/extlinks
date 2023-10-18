@@ -1,0 +1,13 @@
+globby	test
+graceful-fs	test
+is-glob	test
+is-path-cwd	test
+is-path-inside	test
+is-stream	test
+make-dir	test
+p-map	test
+rimraf	test
+slash	test
+tape	test
+temp-dir	test
+unique-string	test

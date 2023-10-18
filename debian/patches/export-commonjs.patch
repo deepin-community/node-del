@@ -1,0 +1,28 @@
+Description: export commonjs file
+Author: Yadd <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2022-09-17
+
+--- a/package.json
++++ b/package.json
+@@ -11,7 +11,10 @@
+ 		"url": "https://sindresorhus.com"
+ 	},
+ 	"type": "module",
+-	"exports": "./index.js",
++	"exports": {
++		"import": "./index.js",
++		"require": "./index.cjs"
++	},
+ 	"types": "./index.d.ts",
+ 	"engines": {
+ 		"node": ">=14.16"
+@@ -21,6 +24,8 @@
+ 		"bench": "node benchmark.js"
+ 	},
+ 	"files": [
++		"dhnodejsBundle.cjs",
++		"index.cjs",
+ 		"index.js",
+ 		"index.d.ts"
+ 	],
