@@ -4,12 +4,16 @@ Upstream-Contact: https://github.com/sindresorhus/del/issues
 Source: https://github.com/sindresorhus/del#readme
 
 Files: *
-Copyright: Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+Copyright: Sindre Sorhus <sindresorhus@gmail.com>
 License: Expat
 
 Files: debian/*
 Copyright: 2017, Pirate Praveen <praveen@debian.org>
- 2019, Yadd <yadd@debian.org>
+ 2019-2022, Yadd <yadd@debian.org>
+License: Expat
+
+Files: debian/tests/test_modules/*
+Copyright: Sindre Sorhus <sindresorhus@gmail.com>
 License: Expat
 
 License: Expat

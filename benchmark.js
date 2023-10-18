@@ -1,21 +1,19 @@
-'use strict';
-const path = require('path');
-const Benchmark = require('benchmark');
-const makeDir = require('make-dir');
-const tempy = require('tempy');
-const del = require('.');
+import path from 'node:path';
+import process from 'node:process';
+import Benchmark from 'benchmark';
+import makeDir from 'make-dir';
+import {temporaryDirectory} from 'tempy';
+import {deleteAsync, deleteSync} from './index.js';
 
 const suite = new Benchmark.Suite('concurrency');
 
-const tempDir = tempy.directory();
+const temporaryDirectoryPath = temporaryDirectory();
 
-const fixtures = Array.from({length: 2000}, (_, index) => {
-	return path.resolve(tempDir, (index + 1).toString());
-});
+const fixtures = Array.from({length: 2000}, (_, index) => path.resolve(temporaryDirectoryPath, (index + 1).toString()));
 
 function createFixtures() {
 	for (const fixture of fixtures) {
-		makeDir.sync(path.resolve(tempDir, fixture));
+		makeDir.sync(path.resolve(temporaryDirectoryPath, fixture));
 	}
 }
 
@@ -33,7 +31,7 @@ const concurrencies = [
 	400,
 	500,
 	1000,
-	Infinity
+	Number.POSITIVE_INFINITY,
 ];
 
 for (const concurrency of concurrencies) {
@@ -42,16 +40,15 @@ for (const concurrency of concurrencies) {
 	suite.add({
 		name,
 		defer: true,
-		setup() {}, // This line breaks async await
 		async fn(deferred) {
 			// Can't use `setup()` because it isn't called after every
 			// defer and it breaks using `async` keyword here.
 			// https://github.com/bestiejs/benchmark.js/issues/136
 			createFixtures();
 
-			const removedFiles = await del(['**/*'], {
-				cwd: tempDir,
-				concurrency
+			const removedFiles = await deleteAsync(['**/*'], {
+				cwd: temporaryDirectoryPath,
+				concurrency,
 			});
 
 			if (removedFiles.length !== fixtures.length) {
@@ -61,14 +58,14 @@ for (const concurrency of concurrencies) {
 
 				console.error(error);
 
-				del.sync(tempDir, {cwd: tempDir, force: true});
+				deleteSync(temporaryDirectoryPath, {cwd: temporaryDirectoryPath, force: true});
 
 				// eslint-disable-next-line unicorn/no-process-exit
 				process.exit(1);
 			}
 
 			deferred.resolve();
-		}
+		},
 	});
 }
 
@@ -79,6 +76,6 @@ suite
 	.on('complete', function () {
 		console.log(`Fastest is ${this.filter('fastest').map('name')}`);
 
-		del.sync(tempDir, {cwd: tempDir, force: true});
+		deleteSync(temporaryDirectoryPath, {cwd: temporaryDirectoryPath, force: true});
 	})
 	.run({async: true});
